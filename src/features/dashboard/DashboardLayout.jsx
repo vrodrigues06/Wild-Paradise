@@ -6,6 +6,18 @@ const StyledDashboardLayout = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-template-rows: auto 34rem auto;
   gap: 2.4rem;
+
+  @media (max-width: 1300px) {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto auto;
+  }
+  @media (max-width: 600px) {
+    /* grid-template-columns: 1fr; */
+    gap: 1.4rem;
+  }
+  @media (max-width: 500px) {
+    gap: 0.8rem;
+  }
 `;
 
 import React from "react";

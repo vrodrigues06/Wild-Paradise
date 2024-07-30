@@ -65,6 +65,23 @@ const StyledModal = styled.div`
   /* animation: ${scaleUp} 0.3s ease-in-out; */
   animation: ${({ isclosing }) => (isclosing ? scaleDown : scaleUp)} 0.3s
     ease-in;
+
+  @media (max-width: 900px) {
+    & > div form {
+      max-width: 50rem;
+    }
+  }
+
+  @media (max-width: 650px) {
+    & > div form {
+      max-width: 40rem;
+    }
+  }
+  @media (max-width: 500px) {
+    & > div form {
+      max-width: 30rem;
+    }
+  }
 `;
 
 const Overlay = styled.div`

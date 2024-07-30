@@ -16,6 +16,16 @@ const StyledTodayItem = styled.li`
   &:first-child {
     border-top: 1px solid var(--color-grey-100);
   }
+  @media (max-width: 700px) {
+    font-size: 1.1rem;
+    gap: 0.8rem;
+    grid-template-columns: 7rem 1fr 5rem 8rem;
+  }
+  @media (max-width: 500px) {
+    font-size: 1rem;
+    gap: 0.6rem;
+    grid-template-columns: 6rem 1fr 8rem;
+  }
 `;
 
 const Guest = styled.div`
@@ -25,9 +35,12 @@ const Guest = styled.div`
 import React from "react";
 import Button from "../../ui/Button";
 import { Link } from "react-router-dom";
+import { useMedia } from "../../hooks/useMedia";
 
 const TodayItem = ({ activity }) => {
   const { id, status, guests, numNights } = activity;
+  const matches = useMedia("(max-width: 700px)");
+  const matches500 = useMedia("(max-width: 500px)");
 
   return (
     <StyledTodayItem>
@@ -35,9 +48,11 @@ const TodayItem = ({ activity }) => {
 
       {status === "checked-in" && <Tag type="blue">Departing</Tag>}
 
-      <Flag src={guests.countryFlag} alt={`Flag of ${guests.country}`} />
+      {!matches && (
+        <Flag src={guests.countryFlag} alt={`Flag of ${guests.country}`} />
+      )}
       <Guest>{guests.fullName}</Guest>
-      <div>{numNights} nights</div>
+      {!matches500 && <div>{numNights} nights</div>}
 
       {status === "unconfirmed" && (
         <Button

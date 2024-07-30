@@ -11,6 +11,13 @@ const DashboardBox = styled.div`
   display: flex;
   flex-direction: column;
   gap: 2.4rem;
+
+  @media (max-width: 500px) {
+    padding: 2rem 1rem;
+    margin-top: 3rem;
+    gap: 2rem;
+    font-size: 1.2rem;
+  }
 `;
 
 export default DashboardBox;

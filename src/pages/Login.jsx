@@ -11,12 +11,15 @@ const LoginLayout = styled.main`
   justify-content: center;
   gap: 3.2rem;
   background-color: var(--color-grey-50);
+  @media (max-width: 500px) {
+    grid-template-columns: 38rem;
+  }
 `;
 
 function Login() {
   return (
     <LoginLayout>
-      <Logo animation="slideRight" />
+      <Logo animation="slideRight" mobileVersion="" />
       <Heading as="h4" animation="slideRight">
         {" "}
         Log in to your account

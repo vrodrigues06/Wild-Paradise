@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import { subDays } from "date-fns";
 import { useDarkMode } from "../../context/DarkModeContext";
+import { useMedia } from "../../hooks/useMedia";
 
 const ChartBox = styled.div`
   /* Box */
@@ -20,6 +21,43 @@ const ChartBox = styled.div`
 
   padding: 2.4rem 3.2rem;
   grid-column: 3 / span 2;
+
+  @media (max-width: 1300px) {
+    grid-column: 1 / span 2;
+  }
+
+  @media (max-width: 600px) {
+    /* grid-column: 1; */
+    padding: 1rem 2rem;
+    margin-top: 3rem;
+  }
+
+  @media (max-width: 600px) {
+    & > div > .recharts-wrapper {
+      font-size: 1.2rem;
+    }
+  }
+
+  @media (max-width: 450px) {
+    & > div > .recharts-wrapper {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      max-width: 400px;
+      & > svg {
+        width: 400px !important;
+      }
+
+      & > .recharts-legend-wrapper {
+        position: initial !important;
+        width: auto !important;
+        & > ul {
+          display: flex;
+          flex-wrap: wrap;
+        }
+      }
+    }
+  }
 
   & > *:first-child {
     margin-bottom: 1.6rem;
@@ -145,6 +183,7 @@ const DurationChart = ({ confirmedStays }) => {
   const { isDarkMode } = useDarkMode();
   const startData = isDarkMode ? startDataDark : startDataLight;
   const data = prepareData(startData, confirmedStays);
+  const matches = useMedia("(max-width: 500px)");
 
   return (
     <ChartBox>
@@ -156,7 +195,7 @@ const DurationChart = ({ confirmedStays }) => {
             nameKey="duration"
             dataKey="value"
             innerRadius={85}
-            outerRadius={110}
+            outerRadius={!matches ? 110 : 100}
             cx="40%"
             cy="50%"
             paddingAngle={3}

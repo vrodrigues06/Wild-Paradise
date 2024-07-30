@@ -10,6 +10,11 @@ const StyledHeader = styled.header`
   gap: 2.4rem;
   justify-content: flex-end;
   align-items: center;
+
+  @media (max-width: 1000px) {
+    padding: 1rem 3rem;
+    gap: 1rem;
+  }
 `;
 const Header = () => {
   return (

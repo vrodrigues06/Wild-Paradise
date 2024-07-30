@@ -17,9 +17,10 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useCheckout } from "../check-in-out/useCheckout";
 import { useDeleteBooking } from "./useDeleteBooking";
+import { useMedia } from "../../hooks/useMedia";
 
 const Cabin = styled.div`
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   font-weight: 600;
   color: var(--color-grey-600);
   font-family: "Sono";
@@ -36,7 +37,7 @@ const Stacked = styled.div`
 
   & span:last-child {
     color: var(--color-grey-500);
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
 `;
 
@@ -62,6 +63,8 @@ function BookingRow({
   const navigate = useNavigate();
   const { checkout, isCheckingOut } = useCheckout();
   const { deleteBookingMutate } = useDeleteBooking();
+  const matches = useMedia("(max-width: 700px )");
+  const matches430 = useMedia("(max-width: 430px )");
 
   const statusToTagName = {
     unconfirmed: "blue",
@@ -71,29 +74,30 @@ function BookingRow({
 
   return (
     <Table.Row>
-      <Cabin>{cabinName}</Cabin>
+      {!matches430 && <Cabin>{cabinName}</Cabin>}
 
       <Stacked>
         <span>{guestName}</span>
         <span>{email}</span>
       </Stacked>
-
-      <Stacked>
-        <span>
-          {isToday(new Date(startDate))
-            ? "Today"
-            : formatDistanceFromNow(startDate)}{" "}
-          &rarr; {numNights} night stay
-        </span>
-        <span>
-          {format(new Date(startDate), "MMM dd yyyy")} &mdash;{" "}
-          {format(new Date(endDate), "MMM dd yyyy")}
-        </span>
-      </Stacked>
+      {!matches && (
+        <Stacked>
+          <span>
+            {isToday(new Date(startDate))
+              ? "Today"
+              : formatDistanceFromNow(startDate)}{" "}
+            &rarr; {numNights} night stay
+          </span>
+          <span>
+            {format(new Date(startDate), "MMM dd yyyy")} &mdash;{" "}
+            {format(new Date(endDate), "MMM dd yyyy")}
+          </span>
+        </Stacked>
+      )}
 
       <Tag type={statusToTagName[status]}>{status.replace("-", " ")}</Tag>
 
-      <Amount>{formatCurrency(totalPrice)}</Amount>
+      {!matches && <Amount>{formatCurrency(totalPrice)}</Amount>}
 
       <Menus.Menu>
         <Menus.Toggle id={bookingId} />

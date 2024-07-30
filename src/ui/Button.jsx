@@ -1,5 +1,4 @@
 import styled, { css } from "styled-components";
-import React from "react";
 
 const sizes = {
   small: css`
@@ -8,11 +7,19 @@ const sizes = {
     text-transform: uppercase;
     font-weight: 600;
     text-align: center;
+    @media (max-width: 700px) {
+      font-size: 1.1rem;
+      padding: 0.2rem 0.6rem;
+    }
   `,
   medium: css`
     font-size: 1.4rem;
     padding: 1.2rem 1.6rem;
     font-weight: 500;
+
+    @media (max-width: 420px) {
+      font-size: 1.2rem;
+    }
   `,
   large: css`
     font-size: 1.6rem;
@@ -58,6 +65,10 @@ const Button = styled.button`
   justify-content: center;
   ${(props) => sizes[props.size]}
   ${(props) => variations[props.variation]}
+
+
+
+
 
   &:disabled {
     background-color: var(--color-grey-300);

@@ -6,10 +6,12 @@ import { useCabins } from "./useCabins";
 import Table from "../../ui/Table";
 import Menus from "../../ui/Menus";
 import { useSearchParams } from "react-router-dom";
+import { useMedia } from "../../hooks/useMedia";
 
 const CabinTable = () => {
   const { isLoading, cabins } = useCabins();
   const [searchParams] = useSearchParams();
+  const matches = useMedia("(max-width: 600px )");
 
   if (isLoading) return <Spinner />;
 
@@ -34,9 +36,13 @@ const CabinTable = () => {
     return (a[field] - b[field]) * modifier;
   });
 
+  // columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr"
+  const columns = matches
+    ? " 0fr 0.5fr 1fr 0.8fr 0.5fr 0.4fr"
+    : "0.6fr 1.8fr 2.2fr 1fr 1fr 1fr";
   return (
     <Menus>
-      <Table columns="0.6fr 1.8fr 2.2fr 1fr 1fr 1fr">
+      <Table columns={columns}>
         <Table.Header>
           <div></div>
           <div>Cabin</div>

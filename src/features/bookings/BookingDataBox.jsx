@@ -28,12 +28,40 @@ const Header = styled.header`
   font-size: 1.8rem;
   font-weight: 500;
   display: flex;
-  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+
   justify-content: space-between;
+
+  @media (max-width: 1200px) {
+    padding: 1.6rem 3.4rem;
+  }
+
+  @media (max-width: 800px) {
+    padding: 1rem 1.4rem;
+    font-size: 1.7rem;
+    gap: 1rem;
+  }
+  @media (max-width: 600px) {
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+    align-items: left;
+    font-size: 1.6rem;
+  }
+
+  @media (max-width: 500px) {
+    gap: 1.6rem;
+    font-size: 1.4rem;
+  }
 
   svg {
     height: 3.2rem;
     width: 3.2rem;
+    @media (max-width: 500px) {
+      height: 2.6rem;
+      width: 2.6rem;
+    }
   }
 
   & div:first-child {
@@ -42,17 +70,32 @@ const Header = styled.header`
     gap: 1.6rem;
     font-weight: 600;
     font-size: 1.8rem;
+    @media (max-width: 500px) {
+      font-size: 1.7rem;
+    }
   }
 
   & span {
     font-family: "Sono";
     font-size: 2rem;
     margin-left: 4px;
+    @media (max-width: 500px) {
+      font-size: 1.8rem;
+    }
   }
 `;
 
 const Section = styled.section`
   padding: 3.2rem 4rem 1.2rem;
+  @media (max-width: 1200px) {
+    padding: 3rem 3.6rem 1rem;
+  }
+  @media (max-width: 800px) {
+    padding: 2.6rem 1rem 1rem;
+  }
+  @media (max-width: 600px) {
+    padding: 2rem 1rem 1rem;
+  }
 `;
 
 const Guest = styled.div`
@@ -61,10 +104,22 @@ const Guest = styled.div`
   gap: 1.2rem;
   margin-bottom: 1.6rem;
   color: var(--color-grey-500);
+  flex-wrap: wrap;
 
   & p:first-of-type {
     font-weight: 500;
     color: var(--color-grey-700);
+  }
+
+  @media (max-width: 800px) {
+    font-size: 1.4rem;
+  }
+  @media (max-width: 600px) {
+    margin-bottom: 4rem;
+  }
+  @media (max-width: 450px) {
+    gap: 1rem;
+    font-size: 1.2rem;
   }
 `;
 
@@ -85,6 +140,10 @@ const Price = styled.div`
     text-transform: uppercase;
     font-size: 1.4rem;
     font-weight: 600;
+    @media (max-width: 500px) {
+      font-size: 1.2rem;
+      margin-left: 3rem;
+    }
   }
 
   svg {
@@ -92,6 +151,30 @@ const Price = styled.div`
     width: 2.4rem;
     color: currentColor !important;
   }
+
+  @media (max-width: 1060px) {
+    padding: 1rem 2.2rem;
+  }
+  @media (max-width: 800px) {
+    padding: 1rem 1rem;
+  }
+  @media (max-width: 800px) {
+    font-size: 1.2rem;
+  }
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    padding: 1rem;
+    flex-wrap: wrap;
+    column-gap: 2rem;
+    row-gap: 0.4rem;
+    margin-top: 2rem;
+  }
+`;
+
+const GuestItemBox = styled.div`
+  display: flex;
+  gap: 0.8rem;
+  align-items: center;
 `;
 
 const Footer = styled.footer`
@@ -140,14 +223,22 @@ function BookingDataBox({ booking }) {
 
       <Section>
         <Guest>
-          {countryFlag && <Flag src={countryFlag} alt={`Flag of ${country}`} />}
-          <p>
-            {guestName} {numGuests > 1 ? `+ ${numGuests - 1} guests` : ""}
-          </p>
-          <span>&bull;</span>
-          <p>{email}</p>
-          <span>&bull;</span>
-          <p>National ID {nationalID}</p>
+          <GuestItemBox>
+            {countryFlag && (
+              <Flag src={countryFlag} alt={`Flag of ${country}`} />
+            )}
+            <p>
+              {guestName} {numGuests > 1 ? `+ ${numGuests - 1} guests` : ""}
+            </p>
+          </GuestItemBox>
+          <GuestItemBox>
+            <span>&bull;</span>
+            <p>{email}</p>
+          </GuestItemBox>
+          <GuestItemBox>
+            <span>&bull;</span>
+            <p>National ID {nationalID}</p>
+          </GuestItemBox>
         </Guest>
 
         {observations && (

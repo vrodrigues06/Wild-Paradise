@@ -8,6 +8,10 @@ const StyledTable = styled.div`
   background-color: var(--color-grey-0);
   border-radius: 7px;
   overflow: hidden;
+
+  @media (max-width: 800px) {
+    font-size: 1.2rem;
+  }
 `;
 
 const CommonRow = styled.div`
@@ -16,6 +20,12 @@ const CommonRow = styled.div`
   column-gap: 2.4rem;
   align-items: center;
   transition: none;
+  @media (max-width: 800px) {
+    column-gap: 1rem;
+  }
+  @media (max-width: 700px) {
+    column-gap: 0.4rem;
+  }
 `;
 
 const StyledHeader = styled(CommonRow)`
@@ -27,6 +37,9 @@ const StyledHeader = styled(CommonRow)`
   letter-spacing: 0.4px;
   font-weight: 600;
   color: var(--color-grey-600);
+  @media (max-width: 800px) {
+    padding: 0.8rem 1.2rem;
+  }
 `;
 
 const StyledRow = styled(CommonRow)`
@@ -34,6 +47,10 @@ const StyledRow = styled(CommonRow)`
 
   &:not(:last-child) {
     border-bottom: 1px solid var(--color-grey-100);
+  }
+
+  @media (max-width: 800px) {
+    padding: 0.8rem 1.2rem;
   }
 `;
 
@@ -46,6 +63,10 @@ const Footer = styled.footer`
   display: flex;
   justify-content: center;
   padding: 1.2rem;
+
+  @media (max-width: 800px) {
+    padding: 0.4rem;
+  }
 
   /* This will hide the footer when it contains no child elements. Possible thanks to the parent selector :has 🎉 */
   &:not(:has(*)) {

@@ -4,9 +4,6 @@ import Input from "../../ui/Input";
 import { useSettings } from "./useSettings";
 import Spinner from "../../ui/Spinner";
 import { useUpdateSettings } from "./useUpdateSettings";
-import Button from "../../ui/Button";
-import ButtonIcon from "../../ui/Button";
-import { HiAcademicCap } from "react-icons/hi2";
 
 function UpdateSettingsForm() {
   const { isLoading, settings } = useSettings();

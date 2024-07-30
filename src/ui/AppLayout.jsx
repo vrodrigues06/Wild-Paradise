@@ -8,6 +8,13 @@ const Main = styled.main`
   background-color: var(--color-grey-50);
   padding: 4rem 4.8rem 6.4rem;
   overflow-y: auto;
+
+  @media (max-width: 1000px) {
+    padding: 2rem 2.4rem;
+  }
+  @media (max-width: 500px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 const StyledAppLayout = styled.section`
@@ -15,6 +22,10 @@ const StyledAppLayout = styled.section`
   grid-template-columns: 26rem 1fr;
   grid-template-rows: auto 1fr;
   height: 100vh;
+
+  @media (max-width: 1000px) {
+    grid-template-columns: 6rem 1fr;
+  }
 `;
 
 const Container = styled.div`
@@ -23,6 +34,10 @@ const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 3.2rem;
+
+  @media (max-width: 800px) {
+    gap: 2rem;
+  }
 `;
 
 const AppLayout = () => {

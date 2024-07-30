@@ -1,10 +1,5 @@
 import styled, { css } from "styled-components";
 
-// const test = css`
-//   text-align: center;
-//   ${10 > 5 && "background-color: yellow"}
-// `;
-
 const Heading = styled.h1`
   ${(props) =>
     props.as === "h1" &&
@@ -39,8 +34,34 @@ const Heading = styled.h1`
     css`
       animation: ${props.animation} 0.6s ease-in-out;
     `}
-    
+    margin-bottom: 1rem;
   line-height: 1.4;
+
+  @media (max-width: 1000px) {
+    ${(props) =>
+      props.as === "h1" &&
+      css`
+        font-size: 2.4rem;
+      `}
+
+    ${(props) =>
+      props.as === "h2" &&
+      css`
+        font-size: 1.7rem;
+      `}
+      
+    ${(props) =>
+      props.as === "h3" &&
+      css`
+        font-size: 1.7rem;
+      `}
+      
+    ${(props) =>
+      props.as === "h4" &&
+      css`
+        font-size: 2.4rem;
+      `}
+  }
 `;
 
 export default Heading;
